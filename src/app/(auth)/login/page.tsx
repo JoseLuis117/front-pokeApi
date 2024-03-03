@@ -1,4 +1,6 @@
 'use client'
+import StyledButton from "@/components/Button";
+import TextGradient from "@/components/textGradient";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form"
@@ -10,10 +12,26 @@ interface UserData {
 export default function Login() {
     const searchParams = useSearchParams();
     const ok = searchParams.get('success');
+    const { register, handleSubmit, formState: { errors }, getValues } = useForm<UserData>();
+    const onSubmit = async(data: UserData) => {
+        console.log(data)
+        // const req = await fetch('/api/auth/register', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // });
+        // const res = await req.json();
+    }
+    const messages = {
+        email: "El correo no es valido",
+        password: "El formato de la contraseña es incorrecto, por favor vuelva a ingresarla",
+    };
     return (
         <div className="flex flex-col items-center justify-center h-screen dark">
             <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-md p-6 space-y-8">
-                <h2 className="text-2xl font-bold text-gray-200 mb-4 text-center">Iniciar Sesion</h2>
+                <TextGradient text="Iniciar Sesión" typeText="h1" position="center" fontSize="2xl" />
                 {ok && <div>
                     <div className="w-full bg-green-500 text-sm text-white rounded-md shadow-lg m-0" role="alert">
                         <div className="flex p-4">
@@ -29,16 +47,20 @@ export default function Login() {
                         </div>
                     </div>
                 </div>}
-                <form className="flex flex-col space-y-4">
-                    <div className="space-y-4 flex flex-col">
-                        <label htmlFor="email" className="text-sm font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent">Correo electronico</label>
-                        <input name="email" type="email" placeholder="Agrega tu correo electronico" className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" />
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
+                <div className="space-y-4 flex flex-col">
+                        <label htmlFor="email" className="text-sm bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent font-bold">Correo</label>
+                        <input {...register("email", { required: 'El email es obligatorio', pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: messages.email } })} name="email" type="email" placeholder="Agrega tu correo electronico" className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" />
+                        {errors.email === undefined && <span className="font-bold bg-gradient-to-r from-blue-300 to-violet-300 bg-clip-text text-transparent text-sm">Ejemplo: correo@correo.com.</span>}
+                        {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
                     </div>
                     <div className="space-y-4 flex flex-col">
-                        <label htmlFor="password" className="text-sm font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent">Contraseña</label>
-                        <input name="password" type="password" placeholder="Agrega tu contraseña" className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" />
+                        <label htmlFor="password" className="text-sm bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent font-bold">Contraseña</label>
+                        <input {...register("password", { required: 'La contraseña es obligatoria, por favor ingresa una contraseña valida', pattern: { value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, message: messages.password } })} name="password" type="password" placeholder="Agrega tu contraseña" className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" />
+                        {errors.password === undefined && <span className="font-bold bg-gradient-to-r from-blue-300 to-violet-300 bg-clip-text text-transparent text-sm">La contraseña debe tener al menos 8 caracteres, y al menos una letra minuscula, mayuscula y un numero</span>}
+                        {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
                     </div>
-                    <button className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-green-600 hover:to-blue-600 transition ease-in-out duration-150" type="submit">Iniciar Sesion</button>
+                    <StyledButton text="Iniciar Sesión" type="submit" link={false}/>
                 </form>
 
                 <div className="flex justify-center mt-4 flex-col space-y-4">

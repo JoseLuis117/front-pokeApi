@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form"
+import StyledButton from "@/components/Button";
+import TextGradient from "@/components/textGradient";
 interface UserData {
     name: string;
     email: string;
@@ -25,7 +27,7 @@ export default function Register() {
             body: JSON.stringify(userData)
         });
         const res = await req.json();
-        res.status === 201 ? router.push('/login?success=true') : router.push(`/register?error=true`);
+        res.response.error? router.push(`/register?error=${res.response.error}`) : router.push('/login?success=true')
     }
     const [close, setClose] = useState(false);
     const messages = {
@@ -36,12 +38,12 @@ export default function Register() {
     };
     return (
         <div className="flex flex-col items-center justify-center dark h-full p-8">
-            <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-md p-6 space-y-8">
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent mb-4 text-center">Registro</h2>
+            <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-md p-8 space-y-8">
+                <TextGradient text="Registro" typeText="h2" fontSize="2xl" position="center" />
                 {(error && close===false) && <div className="flex justify-center">
                     <div className="max-w-xs w-full bg-red-500 text-sm text-white rounded-md shadow-lg m-0" role="alert">
                         <div className="flex p-4">
-                            El correo o el usuario ya estan registrados
+                            {error}
                             <div className="ml-auto">
                                 <button onClick={()=>setClose(true)} type="button" className="inline-flex flex-shrink-0 justify-center items-center h-4 w-4 rounded-md text-white/[.5] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-800 focus:ring-green-500 transition-all text-sm dark:focus:ring-offset-green-500 dark:focus:ring-green-700">
                                     <span className="sr-only">Close</span>
@@ -78,7 +80,7 @@ export default function Register() {
                         {errors.repeat === undefined && <span className="font-bold bg-gradient-to-r from-blue-300 to-violet-300 bg-clip-text text-transparent text-sm">Las contraseñas deben ser las mismas</span>}
                         {errors.repeat && <span className="text-red-500 text-sm">{errors.repeat.message}</span>}
                     </div>
-                    <button className="bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-green-600 hover:to-blue-600 transition ease-in-out duration-150" type="submit">Registrarse</button>
+                    <StyledButton text="Registrarse" type="submit" link={false}/>
                 </form>
 
                 <div className="flex justify-center mt-4 flex-col">
