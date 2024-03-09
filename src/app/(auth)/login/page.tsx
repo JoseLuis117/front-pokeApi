@@ -1,31 +1,62 @@
 'use client'
 import StyledButton from "@/components/Button";
 import TextGradient from "@/components/textGradient";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FormEvent, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form"
 
 interface UserData {
-    email: string;
+    emailOrUser: string;
     password: string;
 }
+function verifyEmailOrUser(data: string):boolean {
+    const regularExpresion = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regularExpresion.test(data);
+}
 export default function Login() {
+    /* const { data: session } = useSession();
+    console.log(session) */
+    const router = useRouter();
+    //Variables que verifican si se regeistro correctamente
     const searchParams = useSearchParams();
     const ok = searchParams.get('success');
+    //Variables que verifican si no encontro al usuario correctamente
+    const [error, setError] = useState<string>('');
+    //Control del forlulario y submit con next auth
     const { register, handleSubmit, formState: { errors }, getValues } = useForm<UserData>();
     const onSubmit = async(data: UserData) => {
-        console.log(data)
-        // const req = await fetch('/api/auth/register', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // });
-        // const res = await req.json();
+        const res = await signIn("credentials", {
+            name: !verifyEmailOrUser(data.emailOrUser) ? data.emailOrUser : undefined,
+            password: data.password,
+            email: verifyEmailOrUser(data.emailOrUser) ? data.emailOrUser : undefined,
+            redirect: false,
+        });
+        if (res?.error) {
+            setError(res.error);
+        } else {
+            router.push("/inicio/1");
+            router.refresh();
+        }
+        /* try {
+            const req = await signIn("credentials", {
+                name: !verifyEmailOrUser(data.emailOrUser) ? data.emailOrUser : undefined,
+                password: data.password,
+                email: verifyEmailOrUser(data.emailOrUser) ? data.emailOrUser : undefined,
+            });
+            console.log(req);
+            if (req?.error) {
+                setError(req.error);
+            } else {
+                router.push("/inicio");
+            }
+        } catch (error) {
+            console.log(error)
+        } */
     }
     const messages = {
-        email: "El correo no es valido",
+        emailOrUser: "El correo no es valido",
         password: "El formato de la contraseña es incorrecto, por favor vuelva a ingresarla",
     };
     return (
@@ -47,12 +78,17 @@ export default function Login() {
                         </div>
                     </div>
                 </div>}
+                {
+                    error && <div>
+                        Datos incorrectos
+                    </div>
+                }
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
                 <div className="space-y-4 flex flex-col">
                         <label htmlFor="email" className="text-sm bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent font-bold">Correo</label>
-                        <input {...register("email", { required: 'El email es obligatorio', pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: messages.email } })} name="email" type="email" placeholder="Agrega tu correo electronico" className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" />
-                        {errors.email === undefined && <span className="font-bold bg-gradient-to-r from-blue-300 to-violet-300 bg-clip-text text-transparent text-sm">Ejemplo: correo@correo.com.</span>}
-                        {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
+                        <input {...register("emailOrUser", { required: 'El email es obligatorio', pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: messages.emailOrUser } })} name="emailOrUser" type="email" placeholder="Agrega tu correo electronico" className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" />
+                        {errors.emailOrUser === undefined && <span className="font-bold bg-gradient-to-r from-blue-300 to-violet-300 bg-clip-text text-transparent text-sm">Ejemplo: correo@correo.com.</span>}
+                        {errors.emailOrUser && <span className="text-red-500 text-sm">{errors.emailOrUser.message}</span>}
                     </div>
                     <div className="space-y-4 flex flex-col">
                         <label htmlFor="password" className="text-sm bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent font-bold">Contraseña</label>

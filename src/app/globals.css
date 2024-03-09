@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body{
-  background-image: url('/img/background.svg');
+  background-image: url('/img/pokemonBG.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 }
