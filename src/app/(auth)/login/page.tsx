@@ -83,11 +83,11 @@ export default function Login() {
                         Datos incorrectos
                     </div>
                 }
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4" noValidate>
                 <div className="space-y-4 flex flex-col">
-                        <label htmlFor="email" className="text-sm bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent font-bold">Correo</label>
-                        <input {...register("emailOrUser", { required: 'El email es obligatorio', pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: messages.emailOrUser } })} name="emailOrUser" type="email" placeholder="Agrega tu correo electronico" className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" />
-                        {errors.emailOrUser === undefined && <span className="font-bold bg-gradient-to-r from-blue-300 to-violet-300 bg-clip-text text-transparent text-sm">Ejemplo: correo@correo.com.</span>}
+                        <label htmlFor="email" className="text-sm bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent font-bold">Ingresa tu correo o nombre de usuario</label>
+                        <input {...register("emailOrUser", { required: 'El email es obligatorio', pattern: { value: /^(?:[a-zA-Z_][a-zA-Z0-9_]*|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/, message: messages.emailOrUser } })} name="emailOrUser" type="email" placeholder="Agrega tu correo electronico" className="bg-gray-700 text-gray-200 border-0 rounded-md p-2 mb-4 focus:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 transition ease-in-out duration-150" />
+                        {errors.emailOrUser === undefined && <span className="font-bold bg-gradient-to-r from-blue-300 to-violet-300 bg-clip-text text-transparent text-sm">Ejemplo: correo@correo.com o Pikachu47.</span>}
                         {errors.emailOrUser && <span className="text-red-500 text-sm">{errors.emailOrUser.message}</span>}
                     </div>
                     <div className="space-y-4 flex flex-col">

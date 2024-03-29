@@ -11,6 +11,21 @@ export interface AllPokemones {
     previous:string | null;
     results:PokemonsDataType;
 }
-export interface PokemonIndividualInfo{
-    
+export interface type{
+    slot:number,
+    type:{
+        name:string,
+        url:string
+    }
 }
+export type types = type[]
+
+export interface Stats{
+    base_stat:number,
+    effort:number,
+    stat:{
+        name:string,
+        url:string
+    }
+}
+export type AllStats = Stats[]

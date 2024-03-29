@@ -1,45 +1,58 @@
+'use client'
 import React from "react";
 import TextGradient from "./textGradient";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoins, faHouse, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightToBracket, faCartPlus, faCoins, faHouse, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons/faBoxOpen";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
 const Sidebar = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <div className="w-full h-full">
                 <div className="px-7 pt-4 bg-gray-800 shadow-lg block sm:hidden">
-                    <div className="flex justify-center items-end">
-                        <div className="flex-1 group">
-                            <a href="#" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                <span className="flex flex-col gap-2 items-center">
-                                    <FontAwesomeIcon size="xs" width={30} icon={faHouse} />
-                                    <span className="block text-xs pb-1">Inicio</span>
+                    <div className="flex justify-between items-end px-4">
+                        <div className="group h-full items-end w-10">
+                            <Link href="/inicio/1" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                                <span className="flex flex-col gap-2 items-end py-4">
+                                    <FontAwesomeIcon height={50} width={20} icon={faHouse} />
                                 </span>
-                            </a>
+                            </Link>
                         </div>
-                        <div className="flex-1 group">
-                            <a href="#" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                <span className="flex flex-col gap-2 items-center">
-                                    <FontAwesomeIcon size="xs" width={25} icon={faUser} />
-                                    <span className="block text-xs pb-1">Perfil</span>
+                        <div className="group h-full items-end w-10">
+                            <Link href="/perfil" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                                <span className="flex flex-col gap-2 items-center py-4">
+                                    <FontAwesomeIcon height={50} icon={faUser} />
                                 </span>
-                            </a>
+                            </Link>
                         </div>
-                        <div className="flex-1 group">
-                            <a href="#" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                <span className="flex flex-col gap-2 items-center">
-                                    <FontAwesomeIcon size="xs" width={35} icon={faBoxOpen} />
-                                    <span className="block text-xs pb-1">Pokemones</span>
+                        <div className="group h-full items-end w-10">
+                            <Link href="/pokemones" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                                <span className="flex flex-col gap-2 items-center py-4">
+                                    <FontAwesomeIcon height={50} icon={faBoxOpen} />
                                 </span>
-                            </a>
+                            </Link>
                         </div>
-                        <div className="flex-1 group">
-                            <a href="#" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                <span className="flex flex-col gap-2 items-center">
-                                    <FontAwesomeIcon size="xs" width={30} icon={faCoins} />
-                                    <span className="block text-xs pb-1">Monedas</span>
+                        <div className="group h-full items-end w-10">
+                            <Link href="/carrito" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                                <span className="flex flex-col gap-2 items-center py-4">
+                                    <FontAwesomeIcon height={50} icon={faCartPlus} />
                                 </span>
-                            </a>
+                            </Link>
+                        </div>
+                        <div className="group h-full items-end w-10">
+                            <Link href="/monedas" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                                <span className="flex flex-col gap-2 items-center py-4">
+                                    <FontAwesomeIcon height={50} icon={faCoins} />
+                                </span>
+                            </Link>
+                        </div>
+                        <div className="group h-full items-end w-12">
+                            <button onClick={()=>signOut()} className="w-full flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                                <span className="flex flex-col gap-2 items-center py-4">
+                                    <FontAwesomeIcon height={50} icon={faArrowRightToBracket} />
+                                </span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -50,40 +63,56 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
                     <div className="min-w-64 relative hidden sm:block bg-gray-800 shadow flex-col justify-between">
                         <div className="px-8 py-4 flex flex-col justify-between h-full fixed">
                             <div className="h-16 w-full flex items-center justify-center">
-                                <TextGradient text="Poke API++" fontSize="4xl" position="center" typeText="h2" />
+                                <TextGradient text="Poke API++" fontSize="3xl" position="center" typeText="h2" />
                             </div>
                             <ul className="mt-12">
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                    <a href="#" className=" ">
+                                    <Link href="/inicio/1" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
                                             <FontAwesomeIcon size="xs" width={20} icon={faHouse} />
                                             <span className="block text-md">Inicio</span>
                                         </span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                    <a href="#" className=" ">
+                                    <Link href="/perfil" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
                                             <FontAwesomeIcon size="xs" width={20} icon={faUser} />
                                             <span className="block text-md">Perfil</span>
                                         </span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                    <a href="#" className=" ">
+                                    <Link href="/pokemones" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
                                             <FontAwesomeIcon size="xs" width={20} icon={faBoxOpen} />
                                             <span className="block text-md">Tus Pokemones</span>
                                         </span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                    <a href="#" className=" ">
+                                    <Link href="/carrito" className=" ">
+                                        <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
+                                            <FontAwesomeIcon size="xs" width={20} icon={faCartPlus} />
+                                            <span className="block text-md">Carrito</span>
+                                        </span>
+                                    </Link>
+                                </li>
+                                <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                                    <Link href="/monedas" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
                                             <FontAwesomeIcon size="xs" width={20} icon={faCoins} />
                                             <span className="block text-md">Comprar monedas</span>
                                         </span>
-                                    </a>
+                                    </Link>
+                                </li>
+                                <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                                    <button onClick={()=>signOut()}>
+                                        <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
+                                            <FontAwesomeIcon size="xs" width={20} icon={faCoins} />
+                                            <span className="block text-md">Cerra Session</span>
+                                        </span>
+                                    </button>
                                 </li>
                             </ul>
                             <div className="border-t border-gray-700">

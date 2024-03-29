@@ -1,7 +1,7 @@
 .card {
     overflow: visible;
-    height: 254px;
-    max-width: 200px;
+    height: 415px;
+    max-width: 270px;
     width: 100%;
 }
 
@@ -52,6 +52,10 @@
     transform: rotateY(180deg);
 }
 
+.content {
+    pointer-events: none;
+}
+
 @keyframes rotation_481 {
     0% {
         transform: rotateZ(0deg);
@@ -65,6 +69,7 @@
 .back {
     transform: rotateY(180deg);
     color: white;
+    padding: 0.5rem;
 }
 
 .front .front-content {
@@ -87,19 +92,12 @@
     width: 100%;
     padding: 10px;
     background-color: #00000099;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     border-radius: 5px;
 }
 
-.title {
+.xp {
     font-size: 11px;
-    max-width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.title p {
-    width: 50%;
 }
 
 .card-footer {

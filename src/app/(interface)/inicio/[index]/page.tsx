@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { PokemonsDataType } from "@/lib/types";
 import Pagination from "@/components/Pagination";
 import { Suspense } from "react";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 async function getPokemonData(limit:number){
     const req = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${limit-20}&limit=${20}`)
     const res = await req.json();
@@ -18,7 +19,8 @@ async function getBatchIndividualData(names: PokemonsDataType) {
     return Promise.all(requests);
 }
 export default async function Index({params}:{params:{index:number}}) {
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
+    console.log(session)
     const twenyPokemons:PokemonsDataType = await getPokemonData(params.index*20);
     const individualInfo = await getBatchIndividualData(twenyPokemons)
     return (
