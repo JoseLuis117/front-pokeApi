@@ -4,8 +4,10 @@ declare module "next-auth" {
     interface Session {
         user: {
             id: string;
+            name: string;
             email: string;
-            name: string
+            regionId: number | null;
+            favouritePokemon:string | null;
         };
         backend_tokens: {
             access_token: string;
@@ -22,6 +24,8 @@ declare module "next-auth/jwt" {
             id: number;
             name: string;
             email: string;
+            regionId: number | null;
+            favouritePokemon:string | null;
         };
         backend_tokens: {
             access_token: string;

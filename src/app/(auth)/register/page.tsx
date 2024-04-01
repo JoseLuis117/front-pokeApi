@@ -27,6 +27,7 @@ export default function Register() {
             body: JSON.stringify(userData)
         });
         const res = await req.json();
+        console.log(res)
         res.response.error? router.push(`/register?error=${res.response.error}`) : router.push('/login?success=true')
     }
     const [close, setClose] = useState(false);

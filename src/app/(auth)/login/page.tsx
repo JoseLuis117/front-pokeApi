@@ -33,27 +33,13 @@ export default function Login() {
             email: verifyEmailOrUser(data.emailOrUser) ? data.emailOrUser : undefined,
             redirect: false,
         });
+        console.log(res)
         if (res?.error) {
             setError(res.error);
         } else {
             router.push("/inicio/1");
             router.refresh();
         }
-        /* try {
-            const req = await signIn("credentials", {
-                name: !verifyEmailOrUser(data.emailOrUser) ? data.emailOrUser : undefined,
-                password: data.password,
-                email: verifyEmailOrUser(data.emailOrUser) ? data.emailOrUser : undefined,
-            });
-            console.log(req);
-            if (req?.error) {
-                setError(req.error);
-            } else {
-                router.push("/inicio");
-            }
-        } catch (error) {
-            console.log(error)
-        } */
     }
     const messages = {
         emailOrUser: "El correo no es valido",

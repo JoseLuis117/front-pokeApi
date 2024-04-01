@@ -1,7 +1,6 @@
 'use client'
 import Image from "next/image";
 import "./style.css"
-import { PokemonDataType } from "@/lib/types";
 import TextGradient from "../textGradient";
 import { types } from "@/lib/types";
 import TypeDiv from "../type/Type";
