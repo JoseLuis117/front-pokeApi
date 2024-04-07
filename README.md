@@ -34,7 +34,7 @@
 </div>
 
 
-<div align="center"  width="640" height="360">
+<div align="center" style="width:640px; height:360px" width="640" height="360">
   
   https://github.com/JoseLuis117/front-pokeApi/assets/74197159/f9b7f6d5-3b4c-48d6-a320-cd3514d044f4
   
