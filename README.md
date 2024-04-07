@@ -34,11 +34,9 @@
 </div>
 
 
-<div align="center" style="width:640px; height:360px" width="640" height="360">
-  
-  https://github.com/JoseLuis117/front-pokeApi/assets/74197159/f9b7f6d5-3b4c-48d6-a320-cd3514d044f4
-  
-</div>
+
+https://github.com/JoseLuis117/front-pokeApi/assets/74197159/93915992-70b7-42f6-ac37-77188d4e83c6
+
 
 
 ## Introduction
