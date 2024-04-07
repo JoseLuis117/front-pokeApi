@@ -13,7 +13,7 @@
   
   <img src="https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white" alt="NestJS">
 
-  ![Prisma](https://img.shields.io/badge/Prisma-134A68?style=plastic&logo=PRISMA&logoColor=white)
+  <img src="https://img.shields.io/badge/Prisma-134A68?style=plastic&logo=PRISMA&logoColor=white" alt="Prisma">
 
    <img src="https://img.shields.io/badge/tailwindcss-0F172A?&logo=tailwindcss" alt="TailWindCSS">
     
