@@ -7,7 +7,7 @@
   <br>
 </h1>
 
-<div align="center">
+<div align="start" style="display:flex">
   
   <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="NextJS">
   
@@ -23,12 +23,15 @@
 
 ## Table of Contents
 
+<div align="start">
 
 - [Introduction](#introduction)
 - [Features](#features)
 - [Feedback](#feedback)
 - [HowToUse](#howtouse)
 - [Thanks](#thanks)
+
+</div>
 
 
 
