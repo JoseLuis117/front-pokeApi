@@ -26,7 +26,7 @@ export default async function Profile() {
     return (
         <main className="min-h-screen">
             <div className="flex justify-center w-full">
-                <TabsProfile userData={userData} regiones={regions}/>
+                <TabsProfile userData={userData} regiones={regions} token={session?.backend_tokens.access_token}/>
             </div>
         </main>
     )

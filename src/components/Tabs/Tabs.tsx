@@ -5,7 +5,7 @@ import { useState } from "react"
 import ProfileCard from "../card/Profile"
 import { Regiones, User } from "@/lib/types"
 import EditProfile from "../forms/EditProfile"
-const TabsProfile = ({ userData, regiones }: { userData: User, regiones: Regiones[] }) => {
+const TabsProfile = ({ userData, regiones, token }: { userData: User, regiones: Regiones[], token:string|undefined }) => {
     const [selectedTab, setSelectedTab] = useState<string | number>('profile')
     return (
         <Card className="bg-gray-800 p-4 max-w-lg w-full">
@@ -23,10 +23,10 @@ const TabsProfile = ({ userData, regiones }: { userData: User, regiones: Regione
                 }}
             >
                 <Tab key="profile" title="Perfil" className="">
-                    <ProfileCard userData={userData} />
+                    <ProfileCard userData={userData} regions={regiones} />
                 </Tab>
                 <Tab key="editProfile" title="Editar Perfil">
-                    <EditProfile regiones={regiones} userData={userData}/>
+                    <EditProfile regiones={regiones} userData={userData} token={token}/>
                 </Tab>
             </Tabs>
         </Card>

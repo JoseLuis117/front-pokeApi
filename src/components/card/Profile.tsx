@@ -1,15 +1,16 @@
 import { Regiones, User } from "@/lib/types"
 import Image from "next/image"
-const ProfileCard = ({ userData }: { userData: User }) => {
+const ProfileCard = ({ userData, regions }: { userData: User, regions:Regiones[] }) => {
+    console.log(userData)
     return (
         <>
             <div className="w-full h-48">
                 <div className="relative">
-                    <div className="absolute">
-                        <Image width={500} height={100} src={'/img/profile/baner.svg'} alt="baner" />
+                    <div className="absolute overflow-hidden max-w-[470px] w-full h-30">
+                        <img style={{width:'500px', height:'130px', overflow:'hidden'}} src={userData.bannerPicture?`https://bucket-poke-api.s3.amazonaws.com/${userData.bannerPicture}`:'/img/profile/baner.svg'} alt="baner" />
                     </div>
-                    <div className="absolute rounded-full overflow-hidden left-[calc(50%-60px)] top-16">
-                        <Image width={120} height={120} src={'/img/profile/profile.svg'} alt="profile" />
+                    <div className="absolute rounded-full overflow-hidden left-[calc(50%-55px)] w-28 h-28 top-16">
+                        <img className="w-[120px]" src={userData.profilePicture?`https://bucket-poke-api.s3.amazonaws.com/${userData.profilePicture}`:'/img/profile/profile.svg'} alt="profile" />
                     </div>
                 </div>
             </div>
@@ -18,7 +19,7 @@ const ProfileCard = ({ userData }: { userData: User }) => {
             </div>
             <div className="grid grid-cols-3 justify-items-center mt-6">
                 <div className="flex flex-col gap-4 items-center">
-                    <p className="text-xl font-bold">{userData.regionId ? userData.regionId : 'Ninguna'}</p>
+                    <p className="text-xl font-bold">{userData.regionId ? regions[userData.regionId-1].nombre : 'Ninguna'}</p>
                     <p className="text-gray-400">Región</p>
                 </div>
                 <div className="flex flex-col gap-4 items-center">

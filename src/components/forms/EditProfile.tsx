@@ -1,20 +1,23 @@
 import React, { useCallback } from 'react';
-import { Button, Input, baseStyles, useDisclosure } from "@nextui-org/react";
+import { Button, Input, Spinner, baseStyles, useDisclosure } from "@nextui-org/react";
 import TextGradient from '../textGradient';
 import { Select, SelectItem } from '@nextui-org/react';
 import './style.css';
 import SocialMedia from '../modal/SocialMedia';
 import Dropzone from 'react-dropzone'
-import { Regiones, User } from '@/lib/types';
+import { Regiones, UpdateUserData, User } from '@/lib/types';
 import { useForm } from 'react-hook-form';
 import Swal from "sweetalert2";
 import { S3Client, S3ClientConfig, PutObjectCommand } from '@aws-sdk/client-s3';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
-const EditProfile = ({ userData, regiones }: { userData: User, regiones: Regiones[] }) => {
+const EditProfile = ({ userData, regiones, token }: { userData: User, regiones: Regiones[], token:string|undefined }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: UpdateUserData) => {
+        setUpdate(true)
+        console.log("Dataa")
+        data.id = userData.id;
+        data.token = token;
+        data.regionId = parseInt(data.regionId);
         const credenciales: S3ClientConfig = {
             credentials: {
                 accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID ? process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID : '',
@@ -25,13 +28,15 @@ const EditProfile = ({ userData, regiones }: { userData: User, regiones: Regione
             region: 'us-east-1',
             credentials: credenciales.credentials
         });
-        console.log(client)
         if (profilePicture) {
-            const key = `usuarios/profilePictures/${userData.id}.${profilePicture.type.split('/')[1]}`;
+            const extension = profilePicture.type.split('/')[1].split('+')[0];
+            const key = `usuarios/profilePictures/${data.id}.${extension}`;
             const commandPutProfilePic = new PutObjectCommand({
                 Bucket: "bucket-poke-api",
                 Key: key,
                 Body: profilePicture,
+                ACL:'public-read',
+
             })
             const outputProfilePic = await client.send(commandPutProfilePic);
             console.log("Profile PIC")
@@ -40,17 +45,19 @@ const EditProfile = ({ userData, regiones }: { userData: User, regiones: Regione
         }
 
         if (banerPicture) {
-            const key = `usuarios/banerPictures/${userData.id}.${banerPicture.type.split('/')[1]}`;
-
+            const extension = banerPicture.type.split('/')[1].split('+')[0];
+            const key = `usuarios/banerPictures/${data.id}.${extension}`;
+            
             const commandPutBanerPic = new PutObjectCommand({
                 Bucket: "bucket-poke-api",
                 Key: key,
                 Body: banerPicture,
+                ACL:'public-read',
             })
             const outputBanerPic = await client.send(commandPutBanerPic);
             console.log("Baner PIC")
             console.log(outputBanerPic)
-            data.banerPicture = key;
+            data.bannerPicture = key;
         }
 
 
@@ -62,6 +69,9 @@ const EditProfile = ({ userData, regiones }: { userData: User, regiones: Regione
             },
             body: JSON.stringify(data)
         });
+        const res = await req.json();
+        console.log(res);
+        setUpdate(false)
         const toast = Swal.mixin({
             toast: true,
             position: 'top',
@@ -78,16 +88,25 @@ const EditProfile = ({ userData, regiones }: { userData: User, regiones: Regione
     }
     const [profilePicture, setProfilePicture] = React.useState<File | undefined>(undefined)
     const [banerPicture, setBanerPicture] = React.useState<File | undefined>(undefined)
+    const [imageError, setImageError] = React.useState<string | undefined>(undefined)
+    const [update, setUpdate] = React.useState(false)
     const onDropProfile = useCallback((acceptedFiles: any[]) => {
+        const validate2 = acceptedFiles[0].type === 'image/svg+xml' ? true : false;
         const validate = acceptedFiles[0].type.split('/')[0] === 'image' ? true : false;
-        if (acceptedFiles[0].size < 5000000 && validate) {
+        if (acceptedFiles[0].size < 5000000 && validate && !validate2) {
+            console.log(acceptedFiles[0])
             setProfilePicture(acceptedFiles[0])
+        }else{
+            setImageError('El archivo debe ser una imagen')
         }
     }, [])
     const onBannerProfile = useCallback((acceptedFiles: any[]) => {
+        const validate2 = acceptedFiles[0].type === 'image/svg+xml' ? true : false;
         const validate = acceptedFiles[0].type.split('/')[0] === 'image' ? true : false;
-        if (acceptedFiles[0].size < 5000000 && validate) {
+        if (acceptedFiles[0].size < 5000000 && validate && !validate2) {
             setBanerPicture(acceptedFiles[0])
+        }else{
+            setImageError('El archivo debe ser una imagen')
         }
     }, [])
     const { register, handleSubmit, formState: { errors }, getValues } = useForm<any>();
@@ -95,7 +114,7 @@ const EditProfile = ({ userData, regiones }: { userData: User, regiones: Regione
         <div className='mt-4'>
             <TextGradient text="Editar Perfil" typeText="h1" position="center" fontSize="2xl" />
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
-                <Input {...register('nombre')} name='nombre' key="outside" label="Nuevo Nombre" type="text" labelPlacement='outside' description='Ejemplo: Pikachu47'
+                <Input {...register('name')} name='name' key="outside" label="Nuevo Nombre" type="text" labelPlacement='outside' description='Ejemplo: Pikachu47'
                     classNames={{
                         inputWrapper: 'bg-gray-700 text-white data-[hover=true]:bg-gray-600 group-data-[focus=true]:bg-gray-600',
                         label: 'font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent group-data-[filled-within=true]:text-none',
@@ -105,8 +124,8 @@ const EditProfile = ({ userData, regiones }: { userData: User, regiones: Regione
 
                 />
                 <Select
-                    {...register('pokemon')}
-                    name='pokemon'
+                    {...register('favouritePokemon')}
+                    name='favouritePokemon'
                     items={userData.pokemons}
                     label="Pokemon favorito"
                     placeholder='Selecciona uno de tus pokemones'
@@ -125,8 +144,8 @@ const EditProfile = ({ userData, regiones }: { userData: User, regiones: Regione
                     >{pokemons.nombre}</SelectItem>}
                 </Select>
                 <Select
-                    {...register('region')}
-                    name='region'
+                    {...register('regionId')}
+                    name='regionId'
                     items={regiones}
                     label="Región"
                     placeholder='Selecciona tu región'
@@ -194,8 +213,12 @@ const EditProfile = ({ userData, regiones }: { userData: User, regiones: Regione
                         </Dropzone>
                     </label>
                 </div>
-
-                <Button type="submit" color="primary" variant='shadow' fullWidth className='my-4 bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white'>Guardar Cambios</Button>
+                {imageError && <div className='w-full'><p className='text-red-500 text-center'>{imageError}</p></div>}
+                <Button disabled={update?true:false} type="submit" color="primary" variant='shadow' fullWidth className='my-4 py-2 bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-white'>
+                    {update? <Spinner size='sm' classNames={{
+                        label: 'text-white text-sm'
+                    }} label="Actualizando" color="default" labelColor="foreground"/> : 'Guardar Cambios'}
+                </Button>
             </form>
         </div>
     );
