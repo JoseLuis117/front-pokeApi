@@ -7,7 +7,7 @@
   <br>
 </h1>
 
-<div align="start" style="display:flex; flex-wrap: wrap; gap: 10px; width:100%">
+<div align="center" style="display:flex; flex-wrap: wrap; gap: 10px; width:100%">
   
   <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="NextJS">
   
