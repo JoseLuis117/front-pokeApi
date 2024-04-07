@@ -35,8 +35,7 @@
 
 
 
-
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+https://github.com/JoseLuis117/front-pokeApi/assets/74197159/f9b7f6d5-3b4c-48d6-a320-cd3514d044f4
 
 
 ## Introduction
