@@ -53,8 +53,7 @@ This goes beyond being just a pokeapi; it's a pokeapi with JWT authentication, d
 
 ## Feedback
 
-Feel free to send me feedback on [Twitter](https://twitter.com/Luis24122797) or Linkedin. Feature requests are always welcome. If you wish to contribute, please take a quick look at the [guidelines](./CONTRIBUTING.md)!
-
+Feel free to send me feedback on [Twitter](https://twitter.com/Luis24122797).
 ## How To Use
 
 ```bash
@@ -70,7 +69,16 @@ $ npm install
 # Run the app
 $ npm run dev
 ```
-
+## ENV
+```bash
+NEXT_PUBLIC_URL=
+NEXT_PUBLIC_API_URL=
+NEXTAUTH_URL=
+NEXTAUTH_URL_INTERNAL=
+NEXTAUTH_SECRET=
+NEXT_PUBLIC_AWS_ACCESS_KEY_ID=
+NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY=
+```
 ## Thanks
 
 Thanks for viewing my project
