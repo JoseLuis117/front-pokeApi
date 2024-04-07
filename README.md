@@ -7,7 +7,7 @@
   <br>
 </h1>
 
-<div align="start" style="display:flex">
+<div align="start" style="display:flex; flex-wrap: wrap; gap: 10px;">
   
   <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="NextJS">
   
@@ -19,7 +19,7 @@
     
    <img src="https://img.shields.io/badge/-typescript-black?logo=typescript" alt="TailWindCSS">
 
-</p>
+</div>
 
 ## Table of Contents
 
