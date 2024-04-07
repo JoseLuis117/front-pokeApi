@@ -34,13 +34,10 @@
 </div>
 
 
-
-https://github.com/JoseLuis117/front-pokeApi/assets/74197159/f9b7f6d5-3b4c-48d6-a320-cd3514d044f4
-<div align="center">
-  <video width="640" height="360" controls>
-    <source src="https://github.com/JoseLuis117/front-pokeApi/assets/74197159/f9b7f6d5-3b4c-48d6-a320-cd3514d044f4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+<div align="center"  width="640" height="360">
+  
+  https://github.com/JoseLuis117/front-pokeApi/assets/74197159/f9b7f6d5-3b4c-48d6-a320-cd3514d044f4
+  
 </div>
 
 
