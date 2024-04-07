@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<h1 align="center">
+  <br>
+  <img src="https://w0.peakpx.com/wallpaper/109/343/HD-wallpaper-pokemon-pikachu-cartoons-pikachu-pokemon.jpg" alt="Markdownify" width="200">
+  <br>
+    PokeApi++
+  <br>
+</h1>
 
-First, run the development server:
+<div align="center">
+  
+  <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="NextJS">
+  
+  <img src="https://img.shields.io/badge/-NestJs-ea2845?style=flat-square&logo=nestjs&logoColor=white" alt="NestJS">
+
+  ![Prisma](https://img.shields.io/badge/Prisma-134A68?style=plastic&logo=PRISMA&logoColor=white)
+
+   <img src="https://img.shields.io/badge/tailwindcss-0F172A?&logo=tailwindcss" alt="TailWindCSS">
+    
+   <img src="https://img.shields.io/badge/-typescript-black?logo=typescript" alt="TailWindCSS">
+
+</p>
+
+## Table of Contents
+
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Feedback](#feedback)
+- [HowToUse](#howtouse)
+- [Thanks](#thanks)
+
+
+
+
+![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+
+
+## Introduction
+
+This goes beyond being just a pokeapi; it's a pokeapi with JWT authentication, database integration, and web services like AWS S3, along with features for online shopping.
+
+## Features
+
+* Buy more than 1000 pokemon on the home page with pagination
+* Customize your profile
+* Buy PokeCoins
+* Add pokemons to your cart
+* Collect them all
+
+## Feedback
+
+Feel free to send me feedback on [Twitter](https://twitter.com/Luis24122797) or Linkedin. Feature requests are always welcome. If you wish to contribute, please take a quick look at the [guidelines](./CONTRIBUTING.md)!
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone this repository
+$ git clone https://github.com/JoseLuis117/front-pokeApi.git
+
+# Go into the repository
+$ cd front-pokeApi
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Thanks
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Thanks for viewing my project
