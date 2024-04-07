@@ -55,6 +55,8 @@ This goes beyond being just a pokeapi; it's a pokeapi with JWT authentication, d
 
 Feel free to send me feedback on [Twitter](https://twitter.com/Luis24122797) or Linkedin. Feature requests are always welcome. If you wish to contribute, please take a quick look at the [guidelines](./CONTRIBUTING.md)!
 
+##How To Use
+
 ```bash
 # Clone this repository
 $ git clone https://github.com/JoseLuis117/front-pokeApi.git
