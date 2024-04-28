@@ -38,7 +38,7 @@ export default function Register() {
         repeat: "Las contraseñas no coinciden, por favor vuelva a ingresar las contraseñas"
     };
     return (
-        <div className="flex flex-col items-center justify-center dark h-full h-screen p-8">
+        <div className="flex flex-col items-center justify-center dark h-screen p-8">
             <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-md p-8 space-y-8">
                 <TextGradient text="Registro" typeText="h2" fontSize="2xl" position="center" />
                 {(error && close===false) && <div className="flex justify-center">

@@ -41,7 +41,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
                             </Link>
                         </div>
                         <div className="group h-full items-end w-10">
-                            <Link href="/monedas" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                            <Link href="/comprar-pokecoins" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
                                 <span className="flex flex-col gap-2 items-center py-4">
                                     <FontAwesomeIcon height={50} icon={faCoins} />
                                 </span>
@@ -99,7 +99,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
                                     </Link>
                                 </li>
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                    <Link href="/monedas" className=" ">
+                                    <Link href="/comprar-pokecoins" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
                                             <FontAwesomeIcon size="xs" width={20} icon={faCoins} />
                                             <span className="block text-md">Comprar monedas</span>
@@ -159,8 +159,8 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
                         </div>
                     </div>
                     {/* onClick="sidebarHandler(true)" */}
-                    <div className="container mx-auto py-10 block md:w-4/5 w-11/12 px-6">
-                        <div className="w-full h-full rounded">
+                    <div className="container mx-auto py-10 block md:w-4/5 w-11/12 px-6 h-full pagos">
+                        <div className="w-full rounded">
                             {children}
                         </div>
                     </div>
