@@ -1,15 +1,17 @@
 'use client'
 import Image from "next/image";
-import "./style.css"
+import { Button, NextUIProvider } from "@nextui-org/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+
+import { AllStats } from "@/lib/types";
+import Stats from "../stats/Stats";
 import TextGradient from "../textGradient";
 import { types } from "@/lib/types";
 import TypeDiv from "../type/Type";
 import Graphic from "../xpGraphic/Graphic";
-import { Button, NextUIProvider } from "@nextui-org/react";
-import { AllStats } from "@/lib/types";
-import Stats from "../stats/Stats";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+
+import "./style.css"
 const Card = ({ data }: { data: any }) => {
     const type: types = data.types;
     const stats: AllStats = data.stats;

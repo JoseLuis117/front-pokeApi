@@ -22,7 +22,6 @@ export default async function Profile() {
     const session = await getServerSession(authOptions)
     const userData:User = await getUserData(session?.user?.id,session?.backend_tokens.access_token);
     const regions = await getRegions(session?.backend_tokens.access_token)
-    console.log(regions)
     return (
         <main className="min-h-screen">
             <div className="flex justify-center w-full">

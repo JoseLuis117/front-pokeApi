@@ -53,6 +53,12 @@ export interface Pokemons {
     speed: int,
     baseExperience: int
 }
+export interface socialNetworks {
+    id: number,
+    name: string,
+    url: string
+    userId: string
+}
 export interface User {
     id: string,
     email: string,
@@ -62,6 +68,7 @@ export interface User {
     pokemons: Pokemons[]
     profilePicture: string
     bannerPicture: string
+    socialNetworks: socialNetworks[]
 }
 export interface Regiones {
     id: number,

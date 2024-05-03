@@ -34,7 +34,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
                             </Link>
                         </div>
                         <div className="group h-full items-end w-10">
-                            <Link href="/carrito" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                            <Link href="/carrito-de-compras" className="flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
                                 <span className="flex flex-col gap-2 items-center py-4">
                                     <FontAwesomeIcon height={50} icon={faCartPlus} />
                                 </span>
@@ -48,7 +48,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
                             </Link>
                         </div>
                         <div className="group h-full items-end w-12">
-                            <button onClick={()=>signOut()} className="w-full flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
+                            <button onClick={()=>signOut({ callbackUrl: 'http://localhost:3000/login' })} className="w-full flex items-end justify-center text-center mx-auto text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
                                 <span className="flex flex-col gap-2 items-center py-4">
                                     <FontAwesomeIcon height={50} icon={faArrowRightToBracket} />
                                 </span>
@@ -62,55 +62,55 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
                     {/* Barra para moviles FIN */}
                     <div className="min-w-64 relative hidden sm:block bg-gray-800 shadow flex-col justify-between">
                         <div className="px-8 py-4 flex flex-col justify-between h-full fixed">
-                            <div className="h-16 w-full flex items-center justify-center">
-                                <TextGradient text="Poke API++" fontSize="3xl" position="center" typeText="h2" />
+                            <div className="h-16 w-full flex items-center justify-center mt-4">
+                                <h2 className="text-3xl text-center font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent">PokeApi ++</h2>
                             </div>
                             <ul className="mt-12">
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
                                     <Link href="/inicio/1" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
-                                            <FontAwesomeIcon size="xs" width={20} icon={faHouse} />
-                                            <span className="block text-md">Inicio</span>
+                                            <FontAwesomeIcon width={25} height={25} icon={faHouse} />
+                                            <span className="block text-lg">Inicio</span>
                                         </span>
                                     </Link>
                                 </li>
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
                                     <Link href="/perfil" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
-                                            <FontAwesomeIcon size="xs" width={20} icon={faUser} />
-                                            <span className="block text-md">Perfil</span>
+                                            <FontAwesomeIcon width={25} height={25} icon={faUser} />
+                                            <span className="block text-lg">Perfil</span>
                                         </span>
                                     </Link>
                                 </li>
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
                                     <Link href="/pokemones" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
-                                            <FontAwesomeIcon size="xs" width={20} icon={faBoxOpen} />
-                                            <span className="block text-md">Tus Pokemones</span>
+                                            <FontAwesomeIcon width={25} height={25} icon={faBoxOpen} />
+                                            <span className="block text-lg">Tus Pokemones</span>
                                         </span>
                                     </Link>
                                 </li>
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                    <Link href="/carrito" className=" ">
+                                    <Link href="/carrito-de-compras" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
-                                            <FontAwesomeIcon size="xs" width={20} icon={faCartPlus} />
-                                            <span className="block text-md">Carrito</span>
+                                            <FontAwesomeIcon width={25} height={25} icon={faCartPlus} />
+                                            <span className="block text-lg">Carrito</span>
                                         </span>
                                     </Link>
                                 </li>
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
                                     <Link href="/comprar-pokecoins" className=" ">
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
-                                            <FontAwesomeIcon size="xs" width={20} icon={faCoins} />
-                                            <span className="block text-md">Comprar monedas</span>
+                                            <FontAwesomeIcon width={25} height={25} icon={faCoins} />
+                                            <span className="block text-lg">Comprar monedas</span>
                                         </span>
                                     </Link>
                                 </li>
                                 <li className="flex w-full justify-between cursor-pointer items-center mb-6 text-gray-400 group-hover:text-cyan-200 border-b-2 border-transparent group-hover:border-cyan-200">
-                                    <button onClick={()=>signOut()}>
+                                    <button onClick={()=>signOut({ callbackUrl: 'http://localhost:3000/login' })}>
                                         <span className="flex flex-row gap-2 hover:text-cyan-200 border-b-2 border-transparent hover:border-cyan-200 hover:pb-4 transition-all">
-                                            <FontAwesomeIcon size="xs" width={20} icon={faCoins} />
-                                            <span className="block text-md">Cerra Session</span>
+                                            <FontAwesomeIcon width={25} height={25} icon={faCoins} />
+                                            <span className="block text-lg">Cerra Session</span>
                                         </span>
                                     </button>
                                 </li>
@@ -158,31 +158,12 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
                             </div>
                         </div>
                     </div>
-                    {/* onClick="sidebarHandler(true)" */}
                     <div className="container mx-auto py-10 block md:w-4/5 w-11/12 px-6 h-full pagos">
                         <div className="w-full rounded">
                             {children}
                         </div>
                     </div>
                 </div>
-                {/* <script>
-                        var sideBar = document.getElementById("mobile-nav");
-                        var openSidebar = document.getElementById("openSideBar");
-                        var closeSidebar = document.getElementById("closeSideBar");
-                        sideBar.style.transform = "translateX(-260px)";
-
-                        function sidebarHandler(flag) {
-                        if (flag) {
-                            sideBar.style.transform = "translateX(0px)";
-                        openSidebar.classNameList.add("hidden");
-                        closeSidebar.classNameList.remove("hidden");
-                        } else {
-                            sideBar.style.transform = "translateX(-260px)";
-                        closeSidebar.classNameList.add("hidden");
-                        openSidebar.classNameList.remove("hidden");
-                        }
-                    }
-                    </script> */}
             </div>
 
         </>

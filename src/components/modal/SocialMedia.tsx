@@ -1,14 +1,42 @@
+"use client"
 import React from "react";
+import { useForm } from "react-hook-form";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, Input, Checkbox, Link } from "@nextui-org/react";
+import Swal from "sweetalert2";
+import { socialNetworks } from "@/lib/types";
 import FacebookGrayIcon from "./FacebookIcon";
 import TwitterIcon from "./TwitterIcon";
 import InstagramIcon from "./InstagramIcon";
-import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
-const SocialMedia = ({ isOpen, onOpenChange, userId }: { isOpen: any, onOpenChange: any, userId: string }) => {
+import { useRouter } from "next/navigation";
+interface SocialMediaComponentTypes {
+    isOpen: any,
+    onOpenChange: any,
+    userId: string,
+    socialNetworks: socialNetworks[],
+    token: string | undefined
+}
+const SocialMedia = ({ isOpen, onOpenChange, userId, socialNetworks, token }: SocialMediaComponentTypes) => {
+    const router = useRouter();
     const { register, handleSubmit, formState: { errors }, getValues } = useForm<any>();
-    const onSubmit = async (data: any) => {
-        console.log(data)
+    const onSubmit = async (socialData: any) => {
+        if (socialNetworks.length === 0) {
+            const req = await fetch(process.env.NEXT_PUBLIC_URL + '/api/initialDataSocialN', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userId, token })
+            })
+            const res = await req.json();
+        }
+        const req = await fetch(process.env.NEXT_PUBLIC_URL+'/api/updateSocialNetworks',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({socialData, token, userId})
+        })
+        const res = await req.json();
         const toast = Swal.mixin({
             toast: true,
             position: 'top',
@@ -22,6 +50,7 @@ const SocialMedia = ({ isOpen, onOpenChange, userId }: { isOpen: any, onOpenChan
             title: 'Redes sociales guardadas correctamente',
             padding: '10px 20px',
         });
+        router.refresh();
     }
     return (
         <Modal
@@ -42,7 +71,7 @@ const SocialMedia = ({ isOpen, onOpenChange, userId }: { isOpen: any, onOpenChan
                                 <Input {...register('facebook')} name="facebook" label="Facebook" type="text" labelPlacement='outside' description='Ejemplo: https://www.facebook.com/joseluis.sanchezmendoza.712/'
                                     classNames={{
                                         inputWrapper: 'bg-gray-700 text-white data-[hover=true]:bg-gray-600 group-data-[focus=true]:bg-gray-600',
-                                        label: 'font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent group-data-[filled-within=true]:text-none',
+                                        label: '!transition-all font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent group-data-[filled-within=true]:text-none',
                                         description: 'font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent',
                                         input: 'group-data-[has-value=true]:text-white',
                                     }}
@@ -51,7 +80,7 @@ const SocialMedia = ({ isOpen, onOpenChange, userId }: { isOpen: any, onOpenChan
                                 <Input {...register('twitter')} name="twitter" label="Twitter" type="text" labelPlacement='outside' description='Ejemplo: https://twitter.com/Luis24122797'
                                     classNames={{
                                         inputWrapper: 'bg-gray-700 text-white data-[hover=true]:bg-gray-600 group-data-[focus=true]:bg-gray-600',
-                                        label: 'font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent group-data-[filled-within=true]:text-none',
+                                        label: '!transition-all font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent group-data-[filled-within=true]:text-none',
                                         description: 'font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent',
                                         input: 'group-data-[has-value=true]:text-white',
                                     }}
@@ -60,7 +89,7 @@ const SocialMedia = ({ isOpen, onOpenChange, userId }: { isOpen: any, onOpenChan
                                 <Input {...register('instagram')} name="instagram" label="Instagram" type="text" labelPlacement='outside' description='Ejemplo: https://www.instagram.com/jose_luis_sanchez_117/'
                                     classNames={{
                                         inputWrapper: 'bg-gray-700 text-white data-[hover=true]:bg-gray-600 group-data-[focus=true]:bg-gray-600',
-                                        label: 'font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent group-data-[filled-within=true]:text-none',
+                                        label: '!transition-all font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent group-data-[filled-within=true]:text-none',
                                         description: 'font-bold bg-gradient-to-r from-fuchsia-300 to-cyan-300 bg-clip-text text-transparent',
                                         input: 'group-data-[has-value=true]:text-white',
                                     }}

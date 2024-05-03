@@ -3,8 +3,6 @@ import { JWT } from "next-auth/jwt";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 async function refreshToken(token: JWT): Promise<JWT> {
-    console.log("Token viejo")
-    console.log(token)
     const res = await fetch(`http://localhost:8000/auth/refresh-token`, {
         method: "POST",
         headers: {
@@ -41,15 +39,11 @@ export const authOptions: NextAuthOptions = {
                         password
                     }),
                 });
-                console.log("request")
-                console.log(request)
                 
                 if(request.status === 401) {
                     return null
                 }
-                console.log("Res")
                 const res = await request.json();
-                console.log(res)
                 return res;
             }
         }),
@@ -57,8 +51,6 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         async jwt({ token, user }: { token: JWT; user: any }) {
             if (user) return { ...token, ...user };
-            console.log(token)
-            console.log(new Date().getTime() < token.backend_tokens.expiresAt)
             if (new Date().getTime() < token.backend_tokens.expiresAt)
                 return token;
 
