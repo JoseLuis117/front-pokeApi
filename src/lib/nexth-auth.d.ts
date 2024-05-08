@@ -8,6 +8,7 @@ declare module "next-auth" {
             email: string;
             regionId: number | null;
             favouritePokemon:string | null;
+            pokeCoins:number
         };
         backend_tokens: {
             access_token: string;
@@ -26,6 +27,7 @@ declare module "next-auth/jwt" {
             email: string;
             regionId: number | null;
             favouritePokemon:string | null;
+            pokeCoins:number;
         };
         backend_tokens: {
             access_token: string;

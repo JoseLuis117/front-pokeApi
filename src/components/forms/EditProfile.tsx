@@ -133,7 +133,7 @@ const EditProfile = ({ userData, regiones, token }: { userData: User, regiones: 
                         popoverContent: 'bg-gray-700 text-white',
                     }}
                 >
-                    {(pokemons) => <SelectItem key={pokemons.id} classNames={{
+                    {(pokemons) => <SelectItem key={pokemons.nombre} classNames={{
                         title: 'text-white',
                         selectedIcon: 'text-white',
                     }}

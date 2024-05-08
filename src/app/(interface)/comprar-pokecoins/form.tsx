@@ -8,9 +8,6 @@ import TextGradient from "@/components/textGradient";
 import './stylesForm.css'
 export default function BuyCoins({ token }: { token: string }) {
     const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PK}`);
-    console.log("stripe")
-    console.log(stripePromise)
-    console.log(token)
     const [clientSecret, setClientSecret] = useState("");
     useEffect(() => {
         const fetchData = async () => {
@@ -20,14 +17,12 @@ export default function BuyCoins({ token }: { token: string }) {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ quantity: 1, token })
                 });
-                console.log("Response:", response);
 
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
 
                 const data = await response.json();
-                console.log("Data:", data);
                 setClientSecret(data.client_secret);
             } catch (error) {
                 console.error("Error fetching data:", error);

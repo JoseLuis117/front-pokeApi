@@ -49,14 +49,29 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async jwt({ token, user }: { token: JWT; user: any }) {
+        async jwt({ token, user, trigger, session }: { token: JWT; user: any, trigger?:"signIn" | "signUp" | "update" | undefined, session?:any }) {
+            if(trigger === "update"){
+                console.log("Update")
+                const req = await fetch(process.env.API_URL+'/user/get-pokecoins',{
+                    method:'GET',
+                    headers:{
+                        'Content-Type':'application/json',
+                        'Authorization':'Bearer '+token.backend_tokens.access_token
+                    }
+                })
+                const res = await req.json();
+                const {pokeCoins} = res;
+                console.log("Poke Coins")
+                console.log(pokeCoins)
+                token.user.pokeCoins = pokeCoins;
+            }
             if (user) return { ...token, ...user };
             if (new Date().getTime() < token.backend_tokens.expiresAt)
                 return token;
-
+            
             return await refreshToken(token);
         },
-        async session({ session, token }: { session: any; token: JWT }) {
+        async session({ session, token, trigger }: { session: any; token: JWT, trigger?:"signIn" | "signUp" | "update" | undefined }) {
             session.user = token.user;
             session.backend_tokens = token.backend_tokens;
             session.expiresAt = token.expiresAt;

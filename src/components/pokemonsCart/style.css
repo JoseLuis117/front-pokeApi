@@ -1,0 +1,27 @@
+.contenedor::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.contenedor::-webkit-scrollbar:vertical {
+    width:10px;
+}
+.contenedorScrollSize::-webkit-scrollbar:vertical{
+    width: 5px;
+}
+.contenedor::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.contenedor::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.contenedor::-webkit-scrollbar-thumb {
+    background-color: rgb(55, 65, 81);
+    border-radius: 20px;
+    border: 2px solid rgb(73, 86, 107);
+}
+
+.contenedor::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}

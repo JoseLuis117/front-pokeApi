@@ -22,7 +22,6 @@ export type types = type[]
 
 export interface Stats {
     base_stat: number,
-    effort: number,
     stat: {
         name: string,
         url: string
@@ -35,14 +34,11 @@ export interface getUserData {
     token: string
 }
 export interface PokemonTypes {
-    id: number,
     nombre: string,
-    pokemonId: number,
 }
 export interface Pokemons {
-    id: internal,
+    id?:number,
     nombre: string,
-    userId: string,
     types: PokemonTypes[],
     xp: int,
     hp: int,
@@ -51,8 +47,10 @@ export interface Pokemons {
     specialAttack: int,
     specialDefense: int,
     speed: int,
-    baseExperience: int
+    isOwnedByUser: bool,
+    imageUrl
 }
+
 export interface socialNetworks {
     id: number,
     name: string,
@@ -82,4 +80,27 @@ export interface UpdateUserData {
     regionId: int,
     profilePicture: string,
     bannerPicture: string
+}
+export interface Cart {
+    pokemons: Pokemon[]
+    userId: string
+}
+
+export interface PokemonData {
+    attack: number;
+    cartId: string;
+    defense: number;
+    hp: number;
+    id: number;
+    imageUrl: string;
+    isOwnedByUser: boolean;
+    nombre: string;
+    specialAttack: number;
+    specialDefense: number;
+    speed: number;
+    types: {
+        id: number;
+        nombre: string;
+    }[];
+    xp: number;
 }
