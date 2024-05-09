@@ -36,8 +36,7 @@
 
 
 
-[][](https://markdown-videos.deta.dev/youtube/Yg6dYlSAiKM)
-
+[![](https://markdown-videos.deta.dev/youtube/Yg6dYlSAiKM)](https://youtu.be/Yg6dYlSAiKM?si=Mrclx5TbgGgE3Rec)
 
 ## Introduction
 
