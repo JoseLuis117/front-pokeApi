@@ -47,8 +47,13 @@ export default function Login() {
     };
     return (
         <div className="flex flex-col items-center justify-center h-screen dark">
+            
             <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-md p-6 space-y-8">
-                <TextGradient text="Iniciar Sesión" typeText="h1" position="center" fontSize="2xl" />
+                <TextGradient text="Iniciar Sesión" typeText="h1" position="center" fontSize="lg" />
+                <TextGradient text="Credenciales de prueba" typeText="p" position="center" fontSize="2xl"/>
+                <TextGradient text="Usuario: JoseLuis117" typeText="p" position="start" fontSize="2xl"/>
+                <TextGradient text="Contraseña: JoseLuis1" typeText="p" position="start" fontSize="2xl"/>
+
                 {ok && <div>
                     <div className="w-full bg-green-500 text-sm text-white rounded-md shadow-lg m-0" role="alert">
                         <div className="flex p-4">
