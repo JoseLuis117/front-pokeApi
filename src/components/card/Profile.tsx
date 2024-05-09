@@ -10,7 +10,7 @@ const ProfileCard = ({ userData, regions }: { userData: User, regions: Regiones[
                         <img style={{ width: '500px', height: '130px', overflow: 'hidden' }} src={userData.bannerPicture ? `https://bucket-poke-api.s3.amazonaws.com/${userData.bannerPicture}` : '/img/profile/baner.svg'} alt="baner" />
                     </div>
                     <div className="absolute rounded-full overflow-hidden left-[calc(50%-55px)] w-28 h-28 top-16">
-                        <img className="w-[120px]" src={userData.profilePicture ? `https://bucket-poke-api.s3.amazonaws.com/${userData.profilePicture}` : '/img/profile/profile.svg'} alt="profile" />
+                        <img className="w-[120px] h-full" src={userData.profilePicture ? `https://bucket-poke-api.s3.amazonaws.com/${userData.profilePicture}` : '/img/profile/profile.svg'} alt="profile" />
                     </div>
                 </div>
             </div>
