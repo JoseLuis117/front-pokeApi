@@ -150,7 +150,7 @@ const PokemonsCart = ({ data, token, pokeCoins }: { data: PokemonData[], token: 
                 {data ?
                     <div className="col-span-3 xl:col-span-2 bg-gray-800 rounded-xl p-12 flex flex-col gap-4 max-h-max">
                         <div>
-                            <TextGradient fontSize="lg" position="start" text={`PokeCoins disponibles: ${session?.user.pokeCoins}`} typeText="p" />
+                            <TextGradient fontSize="lg" position="start" text={`PokeCoins disponibles: ${session?.user.pokeCoins===undefined?0:session?.user.pokeCoins}`} typeText="p" />
                         </div>
                         {Array.isArray(data) && data?.map((value) => (
                             <div className="flex justify-between" key={value.id}>
@@ -160,7 +160,7 @@ const PokemonsCart = ({ data, token, pokeCoins }: { data: PokemonData[], token: 
                         ))}
                         <hr />
                         <div className="flex justify-end">
-                            <TextGradient fontSize="lg" position="start" text={`${price} PC`} typeText="p" />
+                            <TextGradient fontSize="lg" position="start" text={`${price===undefined?0:price} PC`} typeText="p" />
                         </div>
                         {hidden || data.length <= 0 ? <></> : <Button color="success" variant="ghost" onClick={() => {
                             if (pokeCoins >= data.length) {
