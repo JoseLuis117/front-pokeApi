@@ -10,7 +10,7 @@ export default function BuyCoins({token}:{token:string}) {
     const CheckoutForm = () => {
         const fetchClientSecret = useCallback(async () => {
             try {
-                const res = await fetch("http://localhost:3000/api/stripe/createSession", {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/stripe/createSession`, {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'

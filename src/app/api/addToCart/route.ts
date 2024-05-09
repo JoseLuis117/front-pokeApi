@@ -11,10 +11,6 @@ export async function POST(req: Request) {
         },
         body: JSON.stringify({ pokemonData: pokemons, userId })
     })
-    console.log("Request")
-    console.log(request)
     const res = await request.json()
-    console.log("Response")
-    console.log(res)
     return NextResponse.json(res)
 }

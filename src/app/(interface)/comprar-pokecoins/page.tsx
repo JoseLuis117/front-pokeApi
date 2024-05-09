@@ -1,6 +1,6 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import BuyCoins from "./form";
+import { authOptions } from "@/utils/authOptions";
 
 export default async function Buy(){
     const session = await getServerSession(authOptions);

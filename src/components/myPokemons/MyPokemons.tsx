@@ -20,7 +20,7 @@ const MyPokemons = ({ data }: { data: PokemonData[] }) => {
                 :
                 <div className={`${data.length < 7? 'h-screen ':'h-full '} grid justify-items-center justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4`}>
                     {data.map((pokemon, index) => (
-                        <div className="card">
+                        <div className="card" key={pokemon.id}>
                             <div className="content">
                                 <div className="back flex flex-col gap-4 py-4">
                                     <TextGradient text={'STATS'} fontSize={'md'} position={'center'} typeText="p" />

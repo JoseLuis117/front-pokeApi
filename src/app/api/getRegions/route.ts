@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 
 export async function POST(req:Request){
     const data = await req.json()
-    const request = await fetch('http://localhost:8000/pokemones/regiones',{
+    const request = await fetch(`${process.env.API_URL}/pokemones/regiones`,{
         method:'GET',
         headers:{
             'Content-Type':'application/json',

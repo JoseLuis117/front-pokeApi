@@ -58,7 +58,7 @@ export default function CheckoutForm() {
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: "http://localhost:3000/inicio/1",
+                return_url: `${process.env.NEXT_PUBLIC_URL}/inicio/1`,
             },
         });
 

@@ -60,7 +60,7 @@ const EditProfile = ({ userData, regiones, token }: { userData: User, regiones: 
 
 
 
-        const req = await fetch(`http://localhost:3000/api/updateUser`, {
+        const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/updateUser`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

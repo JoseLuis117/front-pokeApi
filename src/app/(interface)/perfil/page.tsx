@@ -1,10 +1,10 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import TabsProfile from "@/components/Tabs/Tabs"
 import { User } from "@/lib/types"
+import { authOptions } from "@/utils/authOptions"
 import { getServerSession } from "next-auth"
 import { Suspense } from "react"
 async function getUserData(id:string | undefined, token:string | undefined){
-    const req = await fetch('http://localhost:3000/api/getUserData',{
+    const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getUserData`,{
         method:'POST',
         body:JSON.stringify({id,token}),
     })
@@ -12,7 +12,7 @@ async function getUserData(id:string | undefined, token:string | undefined){
     return res
 }
 async function getRegions(token:string | undefined){
-    const req = await fetch('http://localhost:3000/api/getRegions',{
+    const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getRegions`,{
         method:'POST',
         body:JSON.stringify({token}),
     })

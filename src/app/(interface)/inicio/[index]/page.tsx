@@ -4,7 +4,7 @@ import Pagination from "@/components/Pagination";
 import { Suspense } from "react";
 import Loading from "./loading";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/utils/authOptions";
 async function getPokemonData(limit:number){
     const req = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${limit-20}&limit=${20}`)
 

@@ -1,5 +1,5 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import PokemonsCart from "@/components/pokemonsCart/PokemonsCart"
+import { authOptions } from "@/utils/authOptions"
 import { getServerSession } from "next-auth"
 import { Suspense } from "react"
 

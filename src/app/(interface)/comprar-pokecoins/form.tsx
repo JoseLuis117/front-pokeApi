@@ -12,7 +12,7 @@ export default function BuyCoins({ token }: { token: string }) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:3000/api/stripe/createIntentPayment", {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/stripe/createIntentPayment`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ quantity: 1, token })

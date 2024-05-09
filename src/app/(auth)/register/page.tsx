@@ -19,7 +19,7 @@ export default function Register() {
     const { register, handleSubmit, formState: { errors }, getValues } = useForm<UserData>();
     const onSubmit = async(data: UserData) => {
         const {repeat, ...userData} = data;
-        const req = await fetch('/api/auth/register', {
+        const req = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import Loading from "../inicio/[index]/loading";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import MyPokemons from "@/components/myPokemons/MyPokemons";
 import { PokemonData } from "@/lib/types";
+import { authOptions } from "@/utils/authOptions";
 
 const GetPokemons = async () => {
     const session = await getServerSession(authOptions);
