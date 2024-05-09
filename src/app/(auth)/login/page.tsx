@@ -51,7 +51,7 @@ export default function Login() {
             <div className="w-full max-w-md bg-gray-800 rounded-lg shadow-md p-6 space-y-8">
                 <TextGradient text="Iniciar Sesión" typeText="h1" position="center" fontSize="lg" />
                 <TextGradient text="Credenciales de prueba" typeText="p" position="center" fontSize="2xl"/>
-                <TextGradient text="Usuario: JoseLuis117" typeText="p" position="start" fontSize="2xl"/>
+                <TextGradient text="Usuario: JoseLuis1" typeText="p" position="start" fontSize="2xl"/>
                 <TextGradient text="Contraseña: JoseLuis1" typeText="p" position="start" fontSize="2xl"/>
 
                 {ok && <div>
