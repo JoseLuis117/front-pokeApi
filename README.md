@@ -36,8 +36,7 @@
 
 
 
-https://github.com/JoseLuis117/front-pokeApi/assets/74197159/93915992-70b7-42f6-ac37-77188d4e83c6
-
+[][](https://markdown-videos.deta.dev/youtube/Yg6dYlSAiKM)
 
 
 ## Introduction
